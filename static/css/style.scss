@@ -247,6 +247,7 @@ a {
          }
          li {
             font-family: $fontTitle;
+
             &:first-child {
                font-size: 0.9rem;
                text-transform: uppercase;
@@ -259,12 +260,14 @@ a {
                   }
                }
             }
+
             &:nth-child(2) {
                font-size: 1.2rem;
-               small {
-                  font-size: 0.75em;
-                  color: lighten($foregroundColor, 75%);
-               }
+            }
+
+            &:nth-child(3) {
+               font-size: 0.9rem;
+               color: lighten($foregroundColor, 75%);
             }
          }
       }
