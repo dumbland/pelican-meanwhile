@@ -15,9 +15,11 @@
 	            {{ article.content }}
 	            </section>
 	            <footer>
+	               <ul class="post-metadata">
 	            {% if article.content|length > 1800 %}
-	               <p><a href="#{{ article.date.strftime('%j%H%M') }}">↥ Return to top</a></p>
+	                  <li class="return"><a href="#{{ article.date.strftime('%j%H%M') }}">↥ Return to top</a></li>
 	            {% endif %}
+	               </ul>
 	            </footer>
 	         </article>
       {% else %}		
