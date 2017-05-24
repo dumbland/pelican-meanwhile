@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% block page_title %}{{ SITENAME }} - Tags{% endblock %}
+{% block content %}
+{% if tag_cloud %}
+            <header>
+                <h3>Tags</h3>
+            </header>
+            <section class='text'>
+                <ul class='tagcloud'>
+    {% for tag in tag_cloud %}
+                    <li class="tag-{{ tag.1 }}"><a href="{{ SITEURL }}/tag/{{ tag.0 }}">{{ tag.0 }}</a></li>
+    {% endfor %}
+                </ul>
+            </article>
+{% endif %}
+{% endblock %}

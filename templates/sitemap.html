@@ -1,0 +1,46 @@
+{% extends "index.html" %}
+{% block title %}{{ SITENAME }} - Sitemap{% endblock %}
+{% block content %}
+            <header>
+                <h2>Sitemap</h2>
+            </header>
+
+            <article class='article-page'>
+                <header>
+                    <h3>Pages</h3>
+                </header>
+                <section class='article-content'>
+                    <ul>
+    {% for page in pages|sort(attribute='title') %}
+                        <li><a href='{{ SITEURL }}/{{ page.url }}'>{{ page.title }}</a></li>
+    {% endfor %}
+                    </ul>
+                </section>
+            </article>
+
+            <article class='article-page'>
+                <header>
+                    <h3>Writing</h3>
+                </header>
+                <section class='article-content'>
+                    <ul>
+    {% for article in articles|selectattr('category.name', 'equalto', 'text') %}
+                        <li><a href='{{ SITEURL }}/{{ article.url }}'>{{ article.title }}</a></li>
+    {% endfor %}
+                    </ul>
+                </section>
+            </article>
+
+            <article class='article-page'>
+                <header>
+                    <h3>Links</h3>
+                </header>
+                <section class='article-content'>
+                    <ul>
+    {% for article in articles|selectattr('category.name', 'equalto', 'linklist') %}
+                        <li><a href='{{ SITEURL }}/{{ article.url }}'>{{ article.title }}</a></li>
+    {% endfor %}
+                    </ul>
+                </section>
+            </article>
+{% endblock %}

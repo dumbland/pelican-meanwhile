@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}{{ article.title|striptags }} - {{ SITENAME }}{% endblock %}
+{% block body_class %}single{% endblock %}
+{% block content %}
+	{% if article %}
+		{% if article.category.name == "text" %}
+	         <article class='post post-article' id="{{ article.date.strftime('%j%H%M') }}">
+	            <header>
+	               <h3 class="post-title">{{ article.title }}</h3>
+	               <div class="post-metadata">
+	                  {{ article.date.strftime('%B %-d %Y') }}
+	               </div>
+	            </header>
+	            <section class="post-content text">
+	            {{ article.content }}
+	            </section>
+	            <footer>
+	            {% if article.content|length > 1800 %}
+	               <p><a href="#{{ article.date.strftime('%j%H%M') }}">↥ Return to top</a></p>
+	            {% endif %}
+	            </footer>
+	         </article>
+      {% else %}		
+		{% include 'post.html' %}
+		{% endif %}
+	{% endif %}
+	<footer>
+{% include 'neighbors.html' %}
+	</footer>
+{% endblock %}

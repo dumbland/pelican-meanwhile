@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+{% block title %}{{ SITENAME }} - Archives {% endblock %}
+{% block body_class %}index{% endblock %}
+{% block content %}
+            <header>
+                <h3>Archives</h3>
+            </header>
+            <section class="text archive archive-text">
+                <header>
+                    <h4>Writing</h4>
+                </header>
+                {% for year, year_articles in articles|selectattr('category.name', 'equalto', 'text')|groupby('date.year')|reverse %}
+                <h5 class='archive-text-year'>{{ year }}</h5>
+                <ul>
+                    {% for article in year_articles %}
+                    <li><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a> <small>{{ article.date.strftime('%B %-d %Y') }}</small></li>
+                    {% endfor %}
+                </ul>
+                {% endfor %}
+            </section>
+            <hr />
+            <section class="text archive archive-linklist">
+                <header>
+                    <h4>Links</h4>
+                </header>
+                {% for year, year_articles in articles|selectattr('category.name', 'equalto', 'linklist')|groupby('date.year')|reverse %}
+                <h5>{{ year }}</h5>
+                <ul>
+                {% set month_dict = year_articles|groupby('date.month') %}
+                {% for m in range(1, 13) %}
+                    {% for month, month_articles in month_dict %}
+                        {% if month|string() == m|string() %}
+                    <li><a href="{{ SITEURL }}/{{ year }}/{{ '{0:02d}'.format(m) }}">{{ m|month_name }} <small>{{ month_articles|length }}</small></a></li>
+                            {% break %}
+                        {% else %}
+                            {% if loop.last %}
+                    <li class='disabled'><span>{{ m|month_name }} <small>0</small></span></li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+                </ul>
+                {% endfor %}
+            </section>
+
+
+
+{% endblock %}

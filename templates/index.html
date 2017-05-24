@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}{{ SITENAME }}{% endblock %}
+{% block body_class %}{% endblock %}
+{% block site_header %}
+            <div class="masthead">
+               <div class="logo">
+                  <img src="{{ SITEURL }}/assets/gfx/falls.gif" alt="[ {{ SITENAME }} ]" />
+               </div>
+               <h1 class="site-title"><a href="{{ SITEURL }}">{{ SITENAME }}</a></h1>
+               <h2 class="site-description">{{ SITESUBTITLE }}</h2>
+            </div>
+            <nav class="site-navigation">
+               <ul>
+               {% for title, link in MENUITEMS %}
+                  <li><a href="{{ link }}">{{ title }}</a></li>
+               {% endfor %}
+               </ul>
+            </nav>
+{% endblock %}
+{% block content %}
+            {% if articles %}
+            <section class="posts">
+               {% for article in articles_page.object_list %}
+                  {% if article.category.name == "text" %}<hr />{% endif %}
+                  {% include 'post.html' %}
+                  {% if article.category.name == "text" %}<hr />{% endif %}
+               {% endfor %}
+            </section>
+            <footer >
+               {% include 'pagination.html' %}
+            </footer>
+            {% endif %}
+{% endblock %}

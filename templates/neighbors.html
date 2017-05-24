@@ -1,0 +1,16 @@
+{% if article.prev_article_in_category or article.next_article_in_category %}
+<nav class='neighbors'>
+{% if article.prev_article_in_category %}
+    <ul>
+        <li><a href='{{ SITEURL }}/{{ article.prev_article_in_category.url }}'>Previous post</a></li>
+        <li>{{ article.prev_article_in_category.title }} <small>({{ article.prev_article_in_category.date.strftime('%B %-d %Y') }})</small></li>
+    </ul>
+{% endif %}
+{% if article.next_article_in_category %}
+    <ul>
+        <li><a href='{{ SITEURL }}/{{ article.next_article_in_category.url }}'>Next post</a></li>
+        <li>{{ article.next_article_in_category.title }} <small>({{ article.next_article_in_category.date.strftime('%B %-d %Y') }})</small></li>
+    </ul>
+{% endif %}
+</nav>
+{% endif %}

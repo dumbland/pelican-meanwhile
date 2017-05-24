@@ -1,0 +1,69 @@
+{% if article %}
+   {% if article.category.name == 'text' %}
+         <article class='post post-article' id="{{ article.date.strftime('%j%H%M') }}">
+            <header>
+               <h3 class="post-title">{{ article.title }}</h3>
+               <div class="post-metadata"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.date.strftime('%B %-d %Y') }}</a></div>
+            </header>
+            <section class="post-content text">
+            {{ article.content }}
+            </section>
+            <footer>
+               <ul class="post-metadata">
+            {% if article.content|length > 1800 %}
+                  <li class="return"><a href="#{{ article.date.strftime('%j%H%M') }}">↥ Return to top</a></li>
+            {% endif %}
+               </ul>
+            </footer>
+         </article>
+   {% elif article.category.name == 'linklist' %}
+         <article class='post post-linklist'>
+            <header>
+               <h3 class="post-title"><a href='{{ article.link|e }}'>{{ article.title }}</a> <span class="post-linklist-domain">({{ article.link|getdomain }})</span></h3>
+            </header>
+            <section class="post-content text">
+            {{ article.content }}
+            {% if article.youtube %}
+               <div class="embed-youtube">
+                  <iframe width="420" height="315" src="http://www.youtube.com/embed/{{ article.youtube }}" frameborder="0" allowfullscreen></iframe>
+               </div>
+            {% endif %}
+            {% if article.vimeo %}
+               <div class="embed-vimeo">
+                  <iframe src="https://player.vimeo.com/video/{{ article.vimeo }}?color=66757f&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+               </div>
+            {% endif %}
+            </section>
+            <footer>
+               <ul class="post-metadata">
+                  <li>{{ article.date.strftime('%b %-d %Y') }}</li>
+                  <li>
+                  {% if article.tags|length > 0 %}
+                     <ul class="post-tags">
+                     {% for tag in article.tags %}
+                        <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
+                     {% endfor %}
+                     </ul>
+                  {% endif %}
+                  </li>
+               </ul>
+            </footer>
+         </article>
+   {% elif article.category.name == 'gallery' %}
+         <article class='post post-gallery'>
+            <footer>
+               <p><a href="{{ SITEURL }}/{{ article.url }}">{{ article.date.strftime('%B %-d %Y') }}</a></p>
+            </footer>
+            <header>
+               <h3 class="post-title">{{ article.title }}</h3>
+            </header>
+            <section class="post-content text">
+               <ul>
+               {% for image in article.galleryimages %}
+                  <li><a href="{{ SITEURL }}/{{ GALLERY_PATH }}/{{ article.album }}/{{ image }}"><img src="{{ SITEURL }}/{{ GALLERY_PATH }}/{{ article.album }}/{{ image }}"></a></li>
+               {% endfor %}
+               </ul>
+            </section>
+         </article>
+   {% endif %}
+{% endif %}
