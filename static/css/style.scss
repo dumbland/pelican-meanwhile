@@ -546,7 +546,7 @@ a {
 
    &.post-linklist {
       header {
-         margin: 0 0 0.5rem 0;
+         margin: 0 0 0.75rem 0;
          .post-title {
             font-family: $fontTitle;
             font-size: 1.1rem;
@@ -561,6 +561,10 @@ a {
       }
       .post-content {
          margin: 0 0.5rem 0.5rem 0.5rem;
+
+         blockquote {
+            font-size: 0.9em;
+         }
       }
 
       footer {
@@ -609,11 +613,14 @@ a {
 
 } /* .post */
 
-body.single {
+body.single .site-content .container {
 
    .post {
       &.post-article {
          margin-top: 0rem;
+      }
+      &.post-linklist {
+         margin-top: 1rem;
       }
    }
 }
@@ -727,7 +734,7 @@ body.single {
 
    blockquote {
       background: url(../gfx/bqarrow.png) repeat-y left center;
-      padding: 0.5rem 0 0.5rem 1rem;
+      padding: 0 0 0 1rem;
       margin: 0 0 1rem 0.5rem;
       color: $themeColor;
    }
