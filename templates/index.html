@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}{{ SITENAME }}{% endblock %}
-{% block body_class %}{% endblock %}
+{% set body_class = "index" %}
 {% block site_header %}
             <div class="masthead">
                <div class="logo">
@@ -21,9 +21,7 @@
             {% if articles %}
             <section class="posts">
                {% for article in articles_page.object_list %}
-                  {% if article.category.name == "text" %}<hr />{% endif %}
                   {% include 'post.html' %}
-                  {% if article.category.name == "text" %}<hr />{% endif %}
                {% endfor %}
             </section>
             <footer >

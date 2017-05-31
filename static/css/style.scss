@@ -514,6 +514,14 @@ a {
          font-family: $fontTitle;
       }
 
+      .summary {
+         margin-bottom: 1.25rem;
+
+         p {
+            font-style: italic;
+         }
+      }
+
       blockquote {
          quotes: "\201C""\201D""\2018""\2019";
 
@@ -540,8 +548,6 @@ a {
 
          }
       }
-
-
    } /* &.post-article */
 
    &.post-linklist {

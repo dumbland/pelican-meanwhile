@@ -1,21 +1,6 @@
 {% if article %}
    {% if article.category.name == 'text' %}
-         <article class='post post-article' id="{{ article.date.strftime('%j%H%M') }}">
-            <header>
-               <h3 class="post-title">{{ article.title }}</h3>
-               <div class="post-metadata"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.date.strftime('%B %-d %Y') }}</a></div>
-            </header>
-            <section class="post-content text">
-            {{ article.content }}
-            </section>
-            <footer>
-               <ul class="post-metadata">
-            {% if article.content|length > 1800 %}
-                  <li class="return"><a href="#{{ article.date.strftime('%j%H%M') }}">↥ Return to top</a></li>
-            {% endif %}
-               </ul>
-            </footer>
-         </article>
+{% include 'post-text.html' %}
    {% elif article.category.name == 'linklist' %}
          <article class='post post-linklist'>
             <header>
@@ -40,7 +25,7 @@
                   <li>
                   {% if article.tags|length > 0 %}
                      <ul class="post-tags">
-                     {% for tag in article.tags %}
+                     {% for tag in article.tags|sort %}
                         <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
                      {% endfor %}
                      </ul>
