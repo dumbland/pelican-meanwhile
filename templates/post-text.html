@@ -1,0 +1,27 @@
+         {{ "<hr />" if body_class == "index" }}
+         <article class='post post-article' id="{{ article.date.strftime('%j%H%M') }}">
+            <header>
+               <h3 class="post-title">{{ article.title }}</h3>
+               <div class="post-metadata"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.date.strftime('%B %-d %Y') }}</a></div>
+            </header>
+            <section class="post-content text">
+            {% if article.summary %}   
+               <section class="summary">
+                  {{ article.summary }}
+               </section>
+            {% endif %}
+               {{ article.content if body_class != "index" }}
+            </section>
+            <footer>
+               <ul class="post-metadata">
+            {% if article.summary %}
+                  <li><a href="{{ SITEURL }}/{{ article.url }}">Continue reading &hellip;</a></li>
+            {% else %}
+               {% if article.content|length > 1800 %}
+                  <li class="return"><a href="#{{ article.date.strftime('%j%H%M') }}">↥ Return to top</a></li>
+               {% endif %}
+            {% endif %}
+               </ul>
+            </footer>
+         </article>
+         {{ "<hr />" if body_class == "index" }}
