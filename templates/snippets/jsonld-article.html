@@ -1,0 +1,19 @@
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org/",
+   "@type": "Article",
+   "name": "{{ article.title|striptags }}",
+   "headline": "{{ article.title|striptags }}",
+   "datePublished": "{{ article.date.isoformat() }}",
+   "dateModified": "{{ article.modified.isoformat() }}",
+   "author": {
+      "@type": "Person",
+      "name": "{{ article.author.name }}",
+      "url": "{{ SITEURL }}/{{ artile.author.url }}"
+   },
+   "image": "{{ SITEURL }}/assets/gfx/default_article.jpg",
+   "url": "{{ SITEURL }}/{{ article.url }}",
+   {% if article.summary %}"description": "{{ article.summary }}",{% endif %}
+   {% if article.tags %}"keywords": "{{ ', '.join(article.tags) }}",{% endif %}
+}
+</script>

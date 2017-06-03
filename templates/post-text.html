@@ -1,5 +1,9 @@
+ {% block meta %}
+ {{ super() }}
+ {% include "snippets/jsonld-article.html" %}
+ {% endblock %}
          {{ "<hr />" if body_class == "index" }}
-         <article class='post post-article' id="{{ article.date.strftime('%j%H%M') }}">
+         <article class="post post-article" id="{{ article.date.strftime('%j%H%M') }}">
             <header>
                <h3 class="post-title">{{ article.title }}</h3>
                <div class="post-metadata"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.date.strftime('%B %-d %Y') }}</a></div>
