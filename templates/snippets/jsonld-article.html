@@ -6,7 +6,7 @@
    "name": "{{ article.title|striptags }}",
    "headline": "{{ article.title|striptags }}",
    "datePublished": "{{ date_string }}",
-   "dateModified": "{{ article.metadata.get('modified', date_string }}",
+   "dateModified": "{{ article.metadata.get('modified', date_string) }}",
    "author": {
       "@type": "Person",
       "name": "{{ article.author.name }}",
