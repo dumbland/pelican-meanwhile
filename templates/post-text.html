@@ -5,16 +5,16 @@
                <div class="post-metadata"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.date.strftime('%B %-d %Y') }}</a></div>
             </header>
             <section class="post-content text">
-            {% if article.summary %}   
+            {% if article.warning %}   
                <section class="summary">
-                  {{ article.summary }}
+                  {{ article.warning }}
                </section>
             {% endif %}
                {{ article.content if body_class != "index" }}
             </section>
             <footer>
                <ul class="post-metadata">
-            {% if article.summary %}
+            {% if article.warning %}
                   <li><a href="{{ SITEURL }}/{{ article.url }}">Continue reading &hellip;</a></li>
             {% else %}
                {% if article.content|length > 1800 %}
