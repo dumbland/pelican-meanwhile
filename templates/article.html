@@ -5,6 +5,7 @@
 {{ super() }}
 {% include "opengraph.html" %}
 {% include "twittercard.html" %}
+{% include "snippets/jsonld-article.html" %}
 {% endblock %}
 {% block content %}
 	{% if article %}
