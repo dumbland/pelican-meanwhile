@@ -9,5 +9,5 @@
    {% for tag in article.tags|sort %}
       <meta property="og:article:tag" content="{{ tag }}" />
    {% endfor %}
-      <meta property="og:article:description" content="{{ article.summary }}" />
+      <meta property="og:article:description" content="{{ article.summary|striptags }}" />
 {% endif %}
