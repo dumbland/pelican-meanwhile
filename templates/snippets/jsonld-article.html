@@ -1,11 +1,12 @@
+{% set date_string = article.date.isoformat() %}
 <script type="application/ld+json">
 {
    "@context": "http://schema.org/",
    "@type": "Article",
    "name": "{{ article.title|striptags }}",
    "headline": "{{ article.title|striptags }}",
-   "datePublished": "{{ article.date.isoformat() }}",
-   "dateModified": "{{ article.modified.isoformat() }}",
+   "datePublished": "{{ date_string }}",
+   "dateModified": "{{ article.metadata.get('modified', date_string }}",
    "author": {
       "@type": "Person",
       "name": "{{ article.author.name }}",
