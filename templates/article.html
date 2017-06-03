@@ -2,6 +2,7 @@
 {% block title %}{{ article.title|striptags }} - {{ SITENAME }}{% endblock %}
 {% set body_class = "single" %}
 {% block meta %}
+{{ super() }}
 {% include "opengraph.html" %}
 {% include "twittercard.html" %}
 {% endblock %}
