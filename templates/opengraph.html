@@ -1,0 +1,12 @@
+{% if article %}
+		<meta property="og:title" content="{{ article.title }}" />
+		<meta property="og:type" content="" />
+		<meta property="og:url" content="{{ SITEURL }}/{{ article.url }}" />
+		<meta property="og:locale" content="en_AU" />
+		<meta property="og:site_name" content="Dumbland.net" />
+		<meta property="og:article:author" content="Dave Raftery" />
+		<meta property="og:article:published" content="{{ article.date|strftime('%Y-%m-%dT%H%M%S%z') }}" />
+	{% for tag in article.tags|sort %}
+		<meta property="og:article:tag" content="{{ tag }}" />
+	{% endfor %}
+{% endif %}
