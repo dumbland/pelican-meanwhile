@@ -2,8 +2,11 @@
 {% block title %}{{ article.title|striptags }} - {{ SITENAME }}{% endblock %}
 {% set body_class = "single" %}
 {% block meta %}
-{{ super() }}
-{% include "snippets/jsonld-article.html" %}
+   <link rel="canonical" href="{{ SITEURL }}/{{ article.url }}" />
+   {{ super() }}
+   {% include "snippets/jsonld-article.html" %}
+   {% include "snippets/og.html" %}
+   {% include "snippets/twitter.html" %}
 {% endblock %}
 {% block content %}
 	{% if article %}

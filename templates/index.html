@@ -1,13 +1,20 @@
 {% extends 'base.html' %}
+
 {% block title %}{{ SITENAME }}{% endblock %}
+
 {% set body_class = "index" %}
+
+{% block meta %}
+{{ super() }}
+{% endblock %}
+
 {% block site_header %}
             <div class="masthead">
                <div class="logo">
-                  <img src="{{ SITEURL }}/assets/gfx/falls.gif" alt="[ {{ SITENAME }} ]" />
+                  <img src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/gfx/falls.gif" alt="[ {{ SITENAME }} ]" />
                </div>
                <h1 class="site-title"><a href="{{ SITEURL }}">{{ SITENAME }}</a></h1>
-               <h2 class="site-description">{{ SITESUBTITLE }}</h2>
+               <h2 class="site-description">{{ SITEDESCRIPTION }}</h2>
             </div>
             <nav class="site-navigation">
                <ul>

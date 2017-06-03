@@ -1,20 +1,33 @@
-{% set date_string = article.date.isoformat() %}
-<script type="application/ld+json">
-{
-   "@context": "http://schema.org/",
-   "@type": "Article",
-   "name": "{{ article.title|striptags }}",
-   "headline": "{{ article.title|striptags }}",
-   "datePublished": "{{ date_string }}",
-   "dateModified": "{{ article.metadata.get('modified', date_string) }}",
-   "author": {
-      "@type": "Person",
-      "name": "{{ article.author.name }}",
-      "url": "{{ SITEURL }}/{{ artile.author.url }}"
-   },
-   "image": "{{ SITEURL }}/assets/gfx/default_article.jpg",
-   "url": "{{ SITEURL }}/{{ article.url }}",
-   {% if article.summary %}"description": "{{ article.summary }}",{% endif %}
-   {% if article.tags %}"keywords": "{{ ', '.join(article.tags) }}",{% endif %}
-}
-</script>
+      <script type="application/ld+json">
+      {
+         "@context": "http://schema.org/",
+         "@type": "Article",
+         "name": "{{ article.title|striptags|escape }}",
+         "headline": "{{ article.title|striptags|escape }}",
+         "datePublished": "{{ article.date.isoformat() }}",
+         {% if article.modified %}
+         "dateModified": "{{ article.modified.isoformat() }}",
+         {% else %}
+         "dateModified": "{{ article.date.isoformat() }}",
+         {% endif %}
+         "author": {
+            "@type": "Person",
+            "name": "{{ AUTHOR }}",
+            "url": "{{ SITEURL }}/{{ AUTHOR_WEBSITE }}"
+         },
+         "publisher": {
+            "@type": "Organization",
+            "name": "{{ SITENAME|striptags|escape }}",
+            "logo": "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/gfx/{{ SITELOGO }}"
+         },
+         "image": "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/gfx/default_article.jpg",
+         "url": "{{ SITEURL }}/{{ article.url }}",
+         {% if article.summary %}
+         "description": "{{ article.summary|striptags|escape }}",
+         {% endif %}
+         {% if article.tags %}
+         "keywords": "{% for tag in article.tags %}{{ tag.name|escape }}{{ ", " if not loop.last }}{% endfor %}",
+         {% endif %}
+         "mainEntityOfPage": "{{ SITEURL }}/{{ article.url }}"
+      }
+      </script>
