@@ -4,10 +4,10 @@
       <meta property="og:locale" content="en_AU" />
       <meta property="og:site_name" content="Dumbland.net" />
       <meta property="og:type" content="article" />
-      <meta property="og:article:author" content="Dave Raftery" />
-      <meta property="og:article:published" content="{{ article.date.isoformat() }}" />
+      <meta property="article:author" content="Dave Raftery" />
+      <meta property="article:published" content="{{ article.date.isoformat() }}" />
    {% for tag in article.tags|sort %}
-      <meta property="og:article:tag" content="{{ tag }}" />
+      <meta property="article:tag" content="{{ tag }}" />
    {% endfor %}
       <meta property="og:description" content="{{ article.summary|striptags }}" />
 {% endif %}
