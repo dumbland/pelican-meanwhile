@@ -19,7 +19,7 @@
             </section>
             <footer>
                <ul class="post-metadata">
-            {% if article.warning %}
+            {% if article.warning and body_class != "single" %}
                   <li><a href="{{ SITEURL }}/{{ article.url }}">Continue reading &hellip;</a></li>
             {% else %}
                {% if article.content|length > 1800 %}
