@@ -5,6 +5,11 @@
                <div class="post-metadata"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.date.strftime('%B %-d %Y') }}</a></div>
             </header>
             <section class="post-content text">
+            {% if article.photo %}
+               <figure>
+                  <img src="{{ SITEURL }}/{{ article.photo }}" />
+               </figure>
+            {% endif %}
             {% if article.warning %}   
                <section class="summary">
                   {{ article.warning }}
