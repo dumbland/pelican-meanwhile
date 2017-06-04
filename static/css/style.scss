@@ -522,6 +522,15 @@ a {
          }
       }
 
+      .warning {
+         margin-bottom: 1.25rem;
+
+         p {
+            font-style: italic;
+            font-size: 0.9em;
+         }
+      }
+
       blockquote {
          quotes: "\201C""\201D""\2018""\2019";
 
