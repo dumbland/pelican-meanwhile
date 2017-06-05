@@ -357,7 +357,7 @@ a {
       margin: 0 0 4rem 0;
 
       li {
-         @include flex(1 1 auto);
+         @include flex(1 1 100%);
          text-align: center;
          margin: 0 0.2rem 0 0;
          font-family: $fontBody;
@@ -368,28 +368,36 @@ a {
          a {
             display: block;
             box-sizing: border-box;
-            background-color: $themeColorDark;
-            color: $backgroundColor;
-            padding: 0.75rem;
+            background-color: $backgroundColor;
+            color: $foregroundColor;
+            padding: 0.5rem 0.25rem;
             border-radius: $borderRadius;
             max-width: 100%;
-            text-decoration: none;
+            text-align: center;
 
             &:hover {
                background-color: $linkHoverColor;
                color: $backgroundColor;
+               text-decoration: none;
             }
          }
 
-         &.current a,
+         &.current a {
+            background-color: $themeColor;
+            color: $backgroundColor;
+         }
+
          &.ellipsis a {
             background-color: $backgroundColor;
             color: $foregroundColor;
          }
 
          &.disabled a {
-            background-color: $themeColorLight;
-            color: $backgroundColor;
+            color: mix($foregroundColor, $backgroundColor, 25%);
+            &:hover {
+               background-color: $backgroundColor;
+               color: mix($foregroundColor, $backgroundColor, 25%);
+            }
          }
       }
    }
@@ -1102,3 +1110,5 @@ body.single .site-content .container {
 
    }
 }
+
+@import "fonts"
