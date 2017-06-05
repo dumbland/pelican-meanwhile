@@ -11,18 +11,12 @@
 {% block site_header %}
             <div class="masthead">
                <div class="logo">
-                  <img src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/gfx/falls.gif" alt="[ {{ SITENAME }} ]" />
+                  <img src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/gfx/falls.gif" alt="A decorative image of Snoqualmie Falls" />
                </div>
                <h1 class="site-title"><a href="{{ SITEURL }}">{{ SITENAME }}</a></h1>
                <h2 class="site-description">{{ SITEDESCRIPTION }}</h2>
             </div>
-            <nav class="site-navigation">
-               <ul>
-               {% for title, link in MENUITEMS %}
-                  <li><a href="{{ link }}">{{ title }}</a></li>
-               {% endfor %}
-               </ul>
-            </nav>
+            {% include "snippets/site-navigation.html" %}
 {% endblock %}
 {% block content %}
             {% if articles %}

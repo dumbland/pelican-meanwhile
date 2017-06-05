@@ -3,7 +3,7 @@
 <nav class='paginator'>
     <ul>
         {% if articles_page.has_previous() %}
-        <li><a href='{{ SITEURL }}/{{ articles_previous_page.url }}'>Newer</a></li>
+        <li><a rel="prev" href='{{ SITEURL }}/{{ articles_previous_page.url }}'>Newer</a></li>
             {% else %}
         <li class='disabled'><a>Newer</a></li>
         {% endif %}
@@ -24,7 +24,7 @@
         {% endfor %}
 
         {% if articles_page.has_next() %}
-        <li><a href='{{ SITEURL }}/{{ articles_next_page.url }}'>Older</a></li>
+        <li><a rel="next" href='{{ SITEURL }}/{{ articles_next_page.url }}'>Older</a></li>
             {% else %}
         <li class='disabled'><a>Older</a></li>
         {% endif %}

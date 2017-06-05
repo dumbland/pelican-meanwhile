@@ -2,7 +2,7 @@
    {% if article.category.name == 'text' %}
 {% include 'post-text.html' %}
    {% elif article.category.name == 'linklist' %}
-         <article class='post post-linklist'>
+         <article class='post post-linklist' role="article">
             <header>
                <h3 class="post-title"><a href='{{ article.link|e }}'>{{ article.title }}</a> <span class="post-linklist-domain">({{ article.link|getdomain }})</span></h3>
             </header>
@@ -21,12 +21,12 @@
             </section>
             <footer>
                <ul class="post-metadata">
-                  <li>{{ article.date.strftime('%b %-d %Y') }}</li>
-                  <li>
+                  <li><span class="hidden">Published on </span>{{ article.date.strftime('%b %-d %Y') }}</li>
+                  <li><span class="hidden">Tags: </span>
                   {% if article.tags|length > 0 %}
                      <ul class="post-tags">
                      {% for tag in article.tags|sort %}
-                        <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
+                        <li><a rel="tag" href="{{ SITEURL }}/{{ tag.url }}">{{ tag.name }}</a></li>
                      {% endfor %}
                      </ul>
                   {% endif %}
@@ -35,7 +35,7 @@
             </footer>
          </article>
    {% elif article.category.name == 'gallery' %}
-         <article class='post post-gallery'>
+         <article class='post post-gallery' role="article">
             <footer>
                <p><a href="{{ SITEURL }}/{{ article.url }}">{{ article.date.strftime('%B %-d %Y') }}</a></p>
             </footer>

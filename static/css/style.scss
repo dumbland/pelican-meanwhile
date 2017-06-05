@@ -7,7 +7,7 @@ $themeColorLight:       #a3bbcb;
 
 $contrastColor:         #dd2c00;
 $contrastColorDark:     #9d1f00;
-$contrastColorLight:    lighten($contrastColor, 10%);
+$contrastColorLight:    mix($contrastColor, $backgroundColor, 90%);
 
 $codeColor:             #4BFF65;
 
@@ -164,6 +164,15 @@ a {
       text-decoration: underline;
       color: $linkHoverColor;
    }
+}
+
+.hidden {
+   position: absolute;
+   left: -10000px;
+   top: auto;
+   width: 1px;
+   height: 1px;
+   overflow: hidden;
 }
 
 .site-header > .container {
@@ -633,7 +642,7 @@ a {
          .post-title {
             font-family: $fontTitle;
             font-size: 1.1rem;
-            color: lighten($foregroundColor, 75%);
+            color: mix($foregroundColor, $backgroundColor, 53.7%);
             line-height: 100%;
 
             .post-linklist-domain {
@@ -655,7 +664,7 @@ a {
             font-family: $fontTitle;
             text-transform: uppercase;
             font-size: $fontSizeSmall;
-            color: rgba($foregroundColor, .5);
+            color: mix($foregroundColor, $backgroundColor, 53.7%);
 
             li {
                display: inline;
@@ -663,10 +672,10 @@ a {
             }
 
             a {
-               color: rgba($linkColor, .5);
+               color: $linkColor;
 
                &:hover {
-                  color: rgba($linkHoverColor, 1);
+                  color: $linkHoverColor;
                }
             }          
 

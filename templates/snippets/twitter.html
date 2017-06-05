@@ -3,5 +3,9 @@
       <meta name="twitter:site" content="{{ TWITTER_ID }}" />
       <meta name="twitter:title" content="{{ article.title }}" />
       <meta name="twitter:description" content="{{ article.summary|striptags }}" />
+      {% if article.photo %}
+      <meta name="twitter:image" content="{{ SITEURL }}/{{ article.photo }}" />
+      {% else %}
       <meta name="twitter:image" content="{{ SITEURL }}/assets/gfx/default_article.jpg" />
+      {% endif %}
 {% endif %}
