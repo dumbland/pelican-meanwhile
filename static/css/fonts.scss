@@ -68,10 +68,10 @@ $iconic-font-path: '../fonts/' !default;
   }
 }
 
-.oi[data-glyph=chevron-left]:before {
-  content: '\e035';
+.oi[data-glyph=chevron-top]:before {
+  content: '\e037';
 }
 
-.oi[data-glyph=chevron-right]:before {
-  content: '\e036';
+.oi[data-glyph=chevron-left]:before {
+  content: '\e035';
 }

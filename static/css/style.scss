@@ -245,8 +245,6 @@ a {
 } /* .site-header .container */
 
 .site-footer > .container {
-   background-color: #3D464C;
-   color: white;
    margin: 0;
    padding: 2rem 1rem;
    font-size: 0.8rem;
@@ -532,6 +530,22 @@ a {
 
          &.tag-3 {
             font-size: 1rem;
+         }
+      }
+   }
+
+   nav {
+      @include flexbox;
+      @include flex-flow(row nowrap);
+      justify-content: space-between;
+
+      a {
+         flex: 1 0 50%;
+         font-size: 0.8rem;
+         font-family: $fontTitle;
+
+         &:nth-child(2) {
+            text-align: right;
          }
       }
    }
@@ -1112,3 +1126,4 @@ body.single .site-content .container {
 }
 
 @import "fonts"
+/* farts in your face from your butt */

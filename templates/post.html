@@ -22,8 +22,8 @@
             <footer>
                <ul class="post-metadata">
                   <li><span class="hidden">Published on </span>{{ article.date.strftime('%b %-d %Y') }}</li>
-                  <li><span class="hidden">Tags: </span>
-                  {% if article.tags|length > 0 %}
+                  <li>
+                     {%- if article.tags|length > 0 %}<span class="hidden">Tags: </span>
                      <ul class="post-tags">
                      {% for tag in article.tags|sort %}
                         <li><a rel="tag" href="{{ SITEURL }}/{{ tag.url }}">{{ tag.name }}</a></li>
