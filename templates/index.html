@@ -28,6 +28,7 @@
             <section class="posts">
                {% for article in articles_page.object_list %}
                   {% include 'post.html' %}
+                  {% if not DEFAULT_PAGINATION and loop.index >= 30 %}{% break %}{% endif %}
                {% endfor %}
             </section>
             <footer>
