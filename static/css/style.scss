@@ -66,6 +66,13 @@ $maxSiteWidth:          48rem;
 
 
 /* resets */
+html, body, div, span,  object, iframe, table, caption, tbody, tfoot, thead, tr, th, td, 
+del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, 
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, 
+dl, dt, dd, ol, ul, li, fieldset, form, label, legend, article, main, nav, ins {
+    min-width: 0; 
+}
+
 body, div, 
 dl, dt, dd, 
 ul, ol, li, 
@@ -269,6 +276,7 @@ a {
 } /* .site-footer */
 
 .site-content > .container {
+   min-width: 0;
    margin: 0 0.5rem 1rem 0.5rem;
 
    > header {
@@ -827,7 +835,6 @@ body.single .site-content .container {
       list-style: lower-roman;
    }
 
-   pre,
    dl {
       padding: 1rem;
       background-color: darken($backgroundColor, 10%);
@@ -855,15 +862,35 @@ body.single .site-content .container {
       color: $themeColor;
    }
 
-   code {
+   pre {
       display: block;
       background-color: $themeColorDark;
       color: $codeColor;
-      padding: 1rem;
+      font-family: $fontMono;
+      padding: 1rem 1rem 0.5rem 1rem;
       margin-bottom: 1rem;
       @include border-radius($borderRadius);
       max-width: 100%;
-      font-family: $fontMono;
+
+      > code {
+         display: block;
+         max-width: 100%;
+         overflow-x: auto;
+         padding-bottom: 0.5rem;
+
+         &::-webkit-scrollbar {
+            width: 1em;
+            height: 1em;
+            background-color: $themeColorDark;
+            @include border-radius(50%);
+         }
+
+         &::-webkit-scrollbar-thumb {
+            background-color: mix($themeColorDark, $backgroundColor, 75%);
+            @include border-radius($borderRadius);
+            border: 3px solid $themeColorDark;
+         }
+      }
    }
 
    em {
