@@ -1,3 +1,3 @@
 # Meanwhile
 
-A theme for the Pelican static site generator.
+A work-in-progress theme for the Pelican static site generator.
