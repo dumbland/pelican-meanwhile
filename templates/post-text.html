@@ -1,32 +1,44 @@
          {{ "<hr />" if body_class == "index" }}
+         {% set show_content = not(article.warning and body_class == "index") %}
          <article class="post post-article" id="{{ article.date.strftime('%j%H%M') }}" role="article">
             <header>
                <h3 class="post-title">{{ article.title }}</h3>
-               <div class="post-metadata"><a rel="bookmark" href="{{ SITEURL }}/{{ article.url }}">{{ article.date.strftime('%B %-d %Y') }}</a></div>
+               <ul class="metadata">
+                  <span class="hidden"><li>By {{ article.author.name }}</li></span>
+                  <li><span class="hidden">Published on </span><a rel="bookmark" href="{{ SITEURL }}/{{ article.url }}">{{ article.date.strftime('%B %-d, %Y') }}</a></li>
+            {% if article.stats %}
+                  <li>{{ article.stats['wc'] }} words</li>
+                  <li><span class="hidden">Estimated reading time of </span>{{ article.stats['read_mins'] }}{{ " minutes" if article.stats['read_mins'] > 1 else " minute" }}</li>
+            {% endif %}
+               </ul>
             </header>
             <section class="post-content text">
-            {% if article.photo %}
-               <figure>
-                  <img src="{{ SITEURL }}/{{ article.photo }}" />
+            {% if article.image %}
+               <figure class="featured">
+                  <img src="{{ SITEURL }}/{{ article.image[0] }}" alt="{{ article.image[1] }}" />
+                  <figcaption>{{ article.image[1] }}</figcaption>
                </figure>
             {% endif %}
             {% if article.warning %}   
-               <section class="summary">
+               <aside class="warning">
                   {{ article.warning }}
-               </section>
+               </aside>
             {% endif %}
-               {{ article.content if body_class != "index" }}
+               {{ article.content if show_content }}
             </section>
             <footer>
-               <ul class="post-metadata">
-            {% if article.warning and body_class != "single" %}
-                  <li><a href="{{ SITEURL }}/{{ article.url }}">Continue reading article &hellip;</a></li>
-            {% else %}
-               {% if article.content|length > 1800 %}
-                  <li class="return"><a href="#{{ article.date.strftime('%j%H%M') }}">↥ Return to top of article</a></li>
-               {% endif %}
+            {% if body_class == "single" %}
+            {% include "neighbors.html" %}
             {% endif %}
-               </ul>
+               <nav>
+            {% if not show_content %}
+                  <a href="{{ SITEURL }}/{{ article.url }}"><span class="oi" data-glyph="chevron-right" title="chevron-right" aria-hidden="true"></span> Continue reading article</a>
+            {% endif %}
+            {% if body_class == "single" %}
+                  <a href="#top"><span class="oi" data-glyph="chevron-top" title="chevron-top" aria-hidden="true"></span> Return to top of page</a>
+                  <a href="{{ SITEURL }}"><span class="oi" data-glyph="chevron-left" title="chevron-left" aria-hidden="true"></span> Return to index</a>
+            {% endif %}
+               </nav>
             </footer>
          </article>
          {{ "<hr />" if body_class == "index" }}

@@ -252,19 +252,22 @@ a {
 } /* .site-header .container */
 
 .site-footer > .container {
+   background-color: $themeColorDark;
    margin: 0;
    padding: 2rem 1rem;
    font-size: 0.8rem;
    text-align: center;
 
    p {
+      color: $backgroundColor;
       margin: 0 0 0.25rem 0;
+
       a {
-         color: $contrastColor;
+         color: mix($contrastColor, $backgroundColor, 50%);
          text-decoration: none;
 
          &:hover {
-            color: $contrastColorDark;
+            color: mix($contrastColorDark, $backgroundColor, 50%);
             text-decoration: underline;
          }
       }
@@ -590,12 +593,51 @@ a {
          .post-title {
             font-size: 1.8rem;
             font-family: $fontTitle;
-            margin: 0 0 0.5rem 0;
+            margin: 0 0 1rem 0;
+            line-height: 100%;
+         }
+      }
+
+      .post-content {
+
+
+      }
+
+      .footnote {
+         hr {
+            margin: 4rem auto 1rem 0;
+            max-width: 45%;
+
+            &::after {
+               content: '';
+            }
+         }
+
+         ol {
+            list-style: decimal;
+            font-size: 0.8rem;
+            font-family: $serifStack; 
+
+            &::before {
+               content: 'Footnotes';
+               text-transform: uppercase;
+               position: relative;
+               left: -1.5rem;
+               top: -0.5rem;
+            }
+
+            li {
+               font-size: 0.8rem;
+               p {
+                  font-family: $sansSerifStack;
+                  font-size: 0.8rem;
+               }
+            }
          }
       }
 
       > footer {
-         margin: 2rem 0 0 0;
+         margin: 0 0 0 0;
 
          ul {
             @include flexbox;
@@ -613,27 +655,47 @@ a {
             font-family: $fontTitle;
             margin-bottom: 0;
          }
+
+         nav {
+            @include flexbox;
+            @include flex-flow(row, nowrap);
+
+            a {
+               font-size: 0.8rem;
+               @include flex(1 auto);
+               text-transform: uppercase;
+            }
+         }
       }
 
-      .post-metadata {
+      .metadata {
          font-size: $fontSizeSmall;
          text-transform: uppercase;
          font-family: $fontTitle;
       }
 
-      .summary {
-         margin-bottom: 1.25rem;
+      ul.metadata {
+         @include flexbox;
+         @include flex-flow(row, nowrap);
+         justify-content: flex-start;
 
-         p {
-            font-style: italic;
+         li {
+            display: inline-block;
+            margin-right: 1rem;
          }
       }
 
       .warning {
-         margin-bottom: 1.25rem;
+         display: block;
+         @include border-radius($borderRadius);
+         border: 0.0625rem solid $linkColor;
+         background-color: mix($linkColor, $backgroundColor, 15%);
+         padding: 0.5rem;
+         margin: 0 0 1.5rem 0;
 
+         color: $linkHoverColor;
+         
          p {
-            font-style: italic;
             font-size: 0.9em;
          }
       }
@@ -740,6 +802,10 @@ body.single .site-content .container {
    .post {
       &.post-article {
          margin-top: 0rem;
+         
+         footer {
+            margin-top: 4.5rem;
+         }
       }
       &.post-linklist {
          margin-top: 1rem;
@@ -852,6 +918,23 @@ body.single .site-content .container {
 
       &:last-child {
          margin-bottom: 0;
+      }
+   }
+
+   sup {
+      vertical-align: super;
+      font-size: 0.6rem;
+      font-family: $serifStack;
+      line-height: 0.6rem;
+
+      a {
+         &:before {
+            content: '[';
+         }
+
+         &:after {
+            content: ']';
+         }
       }
    }
 
@@ -975,6 +1058,18 @@ body.single .site-content .container {
          font-size: $fontSizeSmall;
          text-align: right;
       }
+
+      &.featured {
+         position: relative;
+
+         figcaption {
+            position: absolute;
+            bottom: 0.75rem;
+            right: 0.75rem;
+            color: $backgroundColor;
+            text-shadow: 0.1rem 0.1rem 0 $foregroundColor;
+         }
+      }
    }
 }
 
@@ -995,7 +1090,7 @@ body.single .site-content .container {
             @include flex-flow(column nowrap);
             text-align: center;
             max-width: 100%;
-            margin: 0.5rem 0 0 0;
+            margin: 0.5rem 0 1rem 0;
          }
       }
 
@@ -1051,6 +1146,7 @@ body.single .site-content .container {
    } /* body */
    
    .site-header > .container {
+      margin-bottom: 1rem;
 
       .masthead {
          margin-bottom: 1.45rem;
@@ -1126,7 +1222,18 @@ body.single .site-content .container {
    .site-footer > .container {
       margin-left: (25% + 1.5rem);
       background-color: transparent;
-      color: $foregroundColor;
+
+      p {
+         color: $foregroundColor;
+
+         a {
+            color: $linkColor;
+
+            &:hover {
+               color: $linkHoverColor;
+            }
+         }
+      }
    }
 
    .text {
@@ -1153,4 +1260,4 @@ body.single .site-content .container {
 }
 
 @import "fonts"
-/* farts in your face from your butt */
+/* farts in your face from your butt farts*/
